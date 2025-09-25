@@ -1,0 +1,32 @@
+employees = {}
+
+n = int(input("How many employees?"))
+
+for i in range(n):
+    name = input("Enter name: ")
+    dept = input("Enter department: ")
+    salary = float(input("Enter salary: "))
+    employees[name] = {"department": dept, "salary": salary}
+
+# Average salary
+dept = input("\nEnter department to check average salary: ")
+salaries = [info["salary"] for info in employees.values() if info["department"] == dept]
+if salaries:
+    print("Average salary in", dept, "=", sum(salaries) / len(salaries))
+else:
+    print("No employees in that department")
+
+#  Highest paid employee
+highest = max(employees.items(), key=lambda x: x[1]["salary"])
+print("\nHighest Paid Employee:", highest[0], "with salary", highest[1]["salary"])
+
+#  Give 10% raise
+raise_dept = input("\nEnter department to give 10% raise: ")
+for emp, info in employees.items():
+    if info["department"] == raise_dept:
+        info["salary"] *= 1.10
+
+# Show new update in salary
+print("\nUpdated Employees Dictionary:")
+for name, info in employees.items():
+    print(name, ":", info)
