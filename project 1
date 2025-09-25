@@ -1,0 +1,20 @@
+from collections import Counter
+
+def main():
+    para = input("Enter a paragraph: ")
+    para = para.lower()
+    for i in ".,!?;:'\"()[]{}":
+        para =para.replace(i, "")
+
+    words =  para.split()
+    word_count = Counter(words)
+    top5 = word_count.most_common(5)
+
+
+
+    print("\nTop 5 most frequent words:")
+    for word, freq in top5:
+        print(f"{word}: {freq}")
+
+if __name__ == "__main__":
+    main()
